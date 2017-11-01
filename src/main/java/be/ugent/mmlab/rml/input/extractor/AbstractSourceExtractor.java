@@ -1,11 +1,12 @@
 package be.ugent.mmlab.rml.input.extractor;
 
 import be.ugent.mmlab.rml.mapdochandler.extraction.concrete.SourceExtractor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * RML - Data Retrieval Handler : AbstractInputExtractor
@@ -25,9 +26,9 @@ abstract public class AbstractSourceExtractor implements SourceExtractor {
      * @return
      */
     public Set<String> extractStringTemplate(String stringTemplate) {
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         // Curly braces that do not enclose column names MUST be
-        // escaped by a backslash character (“\”).
+        // escaped by a backslash character ("\").
         stringTemplate = stringTemplate.replaceAll("\\\\\\{", "");
         stringTemplate = stringTemplate.replaceAll("\\\\\\}", "");
 
@@ -41,7 +42,7 @@ abstract public class AbstractSourceExtractor implements SourceExtractor {
                     next = element;
                 }
                 keepNext = element.equals("{");
-                if (element.equals("}") && element != null) {
+                if (element.equals("}")) {
                     log.debug("Extracted variable name "
                             + next + " from string template " + stringTemplate);
                     result.add(next);
