@@ -28,7 +28,7 @@ abstract public class AbstractSourceExtractor implements SourceExtractor {
     public Set<String> extractStringTemplate(String stringTemplate) {
         Set<String> result = new HashSet<>();
         // Curly braces that do not enclose column names MUST be
-        // escaped by a backslash character ("\").
+        // escaped by a backslash character ('\').
         stringTemplate = stringTemplate.replaceAll("\\\\\\{", "");
         stringTemplate = stringTemplate.replaceAll("\\\\\\}", "");
 
